@@ -1,46 +1,53 @@
 <template>
     <div>
-        <div class="grid justify-content-center mt-5 mb-5">
-            <div class="col-12 md:col-5 lg:col-5">
-                <Fieldset>
-                    <template #legend>
-                        <div class="flex align-items-center gap-2 px-2">
-                            <span class="font-bold text-xl">
-                                #{{ pokemon.id }}
-                                <span class="capitalize">{{ pokemon.name }}</span>
-                            </span>
+            <div class="grid justify-content-center mt-5 mb-5">
+                <div class="col-12 md:col-5 lg:col-5">
+                <div class="fadeinleft animation-duration-1000">
+
+                    <Fieldset>
+                        <template #legend>
+                            <div class="flex align-items-center gap-2 px-2">
+                                <span class="font-bold text-xl">
+                                    #{{ pokemon.id }}
+                                    <span class="capitalize">{{ pokemon.name }}</span>
+                                </span>
+                            </div>
+                        </template>
+                        <div class="grid">
+                            <div class="col-12 md:col-5 lg:col-5">
+                                <img :src="pokemon.image" :alt="pokemon.name" width="250" height="250">
+                            </div>
+                            <div class="col-12 md:col-7 lg:col-7">
+                                <Badge severity="info" v-for="t in pokemon.types" :key="t.slot" :value="t.type.name"
+                                    class="capitalize mr-2"></Badge>
+                                <Divider />
+                                <Badge :value="`Weight: ${pokemon.weight}`" class="mr-2" severity="warning"></Badge>
+                                <Badge :value="`Height: ${pokemon.height}`" class="mr-2" severity="warning"></Badge>
+                                <br>
+                                <p class="m-0 mt-3">{{ pokemon.description }}</p>
+                            </div>
                         </div>
-                    </template>
-                    <div class="grid">
-                        <div class="col-12 md:col-5 lg:col-5">
-                            <img :src="pokemon.image" :alt="pokemon.name" width="250" height="250">
-                        </div>
-                        <div class="col-12 md:col-7 lg:col-7">
-                            <Badge severity="info" v-for="t in pokemon.types" :key="t.slot" :value="t.type.name"
-                                class="capitalize mr-2"></Badge>
-                            <Divider />
-                            <Badge :value="`Weight: ${pokemon.weight}`" class="mr-2" severity="warning"></Badge>
-                            <Badge :value="`Height: ${pokemon.height}`" class="mr-2" severity="warning"></Badge>
-                            <br>
-                            <p class="m-0 mt-3">{{ pokemon.description }}</p>
-                        </div>
-                    </div>
-                </Fieldset>
+                    </Fieldset>
+                </div>
             </div>
-            <div class="col-12 md:col-5 lg:col-5">
-                <Fieldset class="fieldsetStyle">
-                    <template #legend>
-                        <div class="flex align-items-center gap-2 px-2">
-                            <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
-                            <span class="font-bold">Pokemon Data</span>
-                        </div>
-                    </template>
-                    <span v-for="(stat, index) in pokemon.stats" :key="stat.base_stat">
-                        <p class="uppercase m-0">{{ stat.stat.name }}</p>
-                        <ProgressBar :class="`${statsColors[index]} ${index != 5 ? 'mb-2' : ''}`" :value="stat.base_stat">
-                        </ProgressBar>
-                    </span>
-                </Fieldset>
+                <div class="col-12 md:col-5 lg:col-5">
+            <div class="fadeinright animation-duration-1000">
+
+                    <Fieldset class="fieldsetStyle">
+                        <template #legend>
+                            <div class="flex align-items-center gap-2 px-2">
+                                <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
+                                <span class="font-bold">Pokemon Data</span>
+                            </div>
+                        </template>
+                        <span v-for="(stat, index) in pokemon.stats" :key="stat.base_stat">
+                            <p class="uppercase m-0">{{ stat.stat.name }}</p>
+                            <ProgressBar :class="`${statsColors[index]} ${index != 5 ? 'mb-2' : ''}`"
+                                :value="stat.base_stat">
+                            </ProgressBar>
+                        </span>
+                    </Fieldset>
+                </div>
             </div>
         </div>
     </div>
@@ -74,6 +81,9 @@ export default {
     created() {
         this.getPokemon()
     },
+    mounted() {
+        document.title = `Pokedex RD | Details`
+    },
     methods: {
         async getPokemon() {
             await axios.get(`https://pokeapi.co/api/v2/pokemon/${this.$route.params.id}`)
@@ -92,12 +102,16 @@ export default {
                 })
                 .catch((err) => {
                     console.log(err)
+                    this.$router.push('/');
                 })
         }
     }
 }
 </script>
 <style>
+.grid {
+    margin: 0 !important;
+}
 .capitalize {
     text-transform: capitalize;
 }
@@ -124,4 +138,5 @@ export default {
 
 .orangeBar.p-progressbar .p-progressbar-value {
     background: #d46213;
-}</style>
+}
+</style>

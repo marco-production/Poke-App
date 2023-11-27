@@ -1,21 +1,24 @@
 <template>
   <div>
-    <div class="grid">
+    <div class="grid without-margin">
       <div v-for="(pokemon, index) in pokemons" :index="index" :key="pokemon.name"
         class="col-12 md:col-6 lg:col-3 flex justify-content-center flex-wrap mt-6">
-        <Card style="width:18em">
-          <template #header>
-            <img :alt="pokemon.name" :src="pokemon.image" class="pl-5 pr-5" width="200" height="200" />
-          </template>
-          <template #title><span style="text-transform: capitalize;">{{ pokemon.name }}</span></template>
-          <template #subtitle> #{{ pokemon.id }} </template>
-          <template #footer>
-            <router-link class="no-underline" :to="`/${pokemon.id}`"><Button label="More details"
-                severity="danger"></Button></router-link>
-          </template>
-        </Card>
+        <div class="fadein animation-duration-1000">
+          <Card style="width:18em">
+            <template #header>
+              <img :alt="pokemon.name" :src="pokemon.image" class="pl-5 pr-5" width="200" height="200" />
+            </template>
+            <template #title><span style="text-transform: capitalize;">{{ pokemon.name }}</span></template>
+            <template #subtitle><b>Pokemon number:</b> {{ pokemon.id }} </template>
+            <template #footer>
+              <router-link class="no-underline" :to="`/${pokemon.id}`"><Button label="More details"
+                  severity="danger"></Button></router-link>
+            </template>
+          </Card>
+        </div>
       </div>
     </div>
+
     <Paginator class="mt-6 mb-6" v-model:first="offset" :rows="limit" :totalRecords="total"></Paginator>
   </div>
 </template>
@@ -35,6 +38,9 @@ export default {
   },
   created() {
     this.getPokemons();
+  },
+  mounted() {
+    document.title = 'Pokedex RD'
   },
   watch: {
     offset(newValue, oldValue) {
@@ -74,3 +80,12 @@ export default {
   }
 }
 </script>
+<style>
+.p-menubar.p-menubar-mobile .p-menubar-button {
+    color: #ffffff;
+}
+.without-margin {
+  margin-left: 0 !important; 
+  margin-right: 0 !important;
+}
+</style>
