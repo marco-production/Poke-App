@@ -7,10 +7,10 @@
           <template #header>
             <img alt="user header" :src="pokemon.image" class="pl-5 pr-5" width="200" height="200" />
           </template>
-          <template #title> <span style="text-transform: capitalize;">{{ pokemon.name }}</span></template>
+          <template #title><span style="text-transform: capitalize;">{{ pokemon.name }}</span></template>
           <template #subtitle> #{{ pokemon.id }} </template>
           <template #footer>
-            <Button icon="pi pi-eye" label="Details"></Button>
+            <a :href="`/${pokemon.id}`" class="p-button font-bold"><i icon="pi pi-eye"></i> Details</a>
           </template>
         </Card>
       </div>
@@ -39,7 +39,7 @@ export default {
   watch: {
     offset(newValue, oldValue) {
       this.offset = newValue;
-      scroll(0,0)
+      scroll(0, 0)
       this.getPokemons();
     },
   },
@@ -59,7 +59,7 @@ export default {
           this.pokemons.map((pokemon) => {
             this.pokeNumber = this.pokeNumber + 1;
             pokemon.id = this.pokeNumber;
-            pokemon.image = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`
+            pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`
           })
           console.log(this.pokemons)
         })

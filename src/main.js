@@ -14,7 +14,7 @@ import Menubar from 'primevue/menubar'
 import InputText from 'primevue/inputtext'
 import Card from 'primevue/card'
 import Paginator from 'primevue/paginator'
-
+import Fieldset from 'primevue/fieldset'
 
 
 const app = createApp(App)
@@ -29,6 +29,7 @@ app.component('Button', Button)
 app.component('Menubar', Menubar) 
 app.component('InputText', InputText)
 app.component('Paginator', Paginator)  
+app.component('Fieldset', Fieldset)  
 
 
 // Mount App
