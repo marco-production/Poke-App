@@ -27,7 +27,7 @@
 import axios from 'axios';
 
 export default {
-  name: "Home",
+  name: "home-view",
   data() {
     return {
       pokemons: [],
@@ -66,7 +66,7 @@ export default {
           // Add id to pokemon
           this.pokemons.map((pokemon, index) => {
             let offset = this.offset;
-            pokemon.id = offset = 0 ? (index + 1) : offset + (index + 1)
+            pokemon.id = offset == 0 ? (index + 1) : offset + (index + 1)
             pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`
           })
           console.log(`https://pokeapi.co/api/v2/pokemon?limit=${this.limit}&offset=${this.offset}`)

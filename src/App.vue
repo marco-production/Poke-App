@@ -2,7 +2,7 @@
 import { provide, shallowRef } from 'vue';
 import layouts from './layouts/layouts';
 import router from './router';
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 
 const layout = shallowRef('div');
 
@@ -14,24 +14,10 @@ provide('app:layout', layout)
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-
   <component :is="layout || 'div'">
     <RouterView />
   </component>
 
-  <RouterView />
 </template>
 
 <style scoped>
