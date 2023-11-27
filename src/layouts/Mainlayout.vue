@@ -2,7 +2,7 @@
     <div>
         <Menubar :model="items">
             <template #start>
-                <img :src="pokeball" alt="pokeball" />
+                <img :src="pokeball" alt="pokeball" style="margin-right: 10px;"/>
             </template>
             <template #item="{ item, props, hasSubmenu, root }">
                 <a v-ripple class="flex align-items-center" v-bind="props.action">
@@ -40,7 +40,7 @@ export default {
                     icon: 'pi pi-home'
                 },
                 {
-                    label: 'Features',
+                    label: 'Categories',
                     icon: 'pi pi-star'
                 },
                 {
