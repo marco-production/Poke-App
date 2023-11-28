@@ -29,7 +29,6 @@ import { ref } from 'vue'
 import pokeball from '../assets/svg/pokeball.svg'
 import Menubar from 'primevue/menubar'
 
-
 export default {
     name: "main-layout",
     data() {
@@ -43,7 +42,8 @@ export default {
                 },
                 {
                     label: 'Types',
-                    icon: 'pi pi-star'
+                    icon: 'pi pi-star',
+                    path: '/types'
                 },
                 {
                     label: 'Marco CV',

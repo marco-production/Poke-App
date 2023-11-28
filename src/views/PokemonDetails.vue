@@ -17,11 +17,13 @@
                                 <img :src="pokemon.image" :alt="pokemon.name" width="250" height="250">
                             </div>
                             <div class="col-12 md:col-7 lg:col-7">
-                                <badge-component severity="info" v-for="t in pokemon.types" :key="t.slot" :value="t.type.name"
-                                    class="capitalize mr-2"></badge-component>
+                                <badge-component severity="info" v-for="t in pokemon.types" :key="t.slot"
+                                    :value="t.type.name" class="capitalize mr-2"></badge-component>
                                 <Divider />
-                                <badge-component :value="`Weight: ${pokemon.weight}`" class="mr-2" severity="warning"></badge-component>
-                                <badge-component :value="`Height: ${pokemon.height}`" class="mr-2" severity="warning"></badge-component>
+                                <badge-component :value="`Weight: ${pokemon.weight}`" class="mr-2"
+                                    severity="warning"></badge-component>
+                                <badge-component :value="`Height: ${pokemon.height}`" class="mr-2"
+                                    severity="warning"></badge-component>
                                 <br>
                                 <p class="m-0 mt-3">{{ pokemon.description }}</p>
                             </div>
