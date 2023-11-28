@@ -17,7 +17,7 @@ provide('app:layout', layout)
   <component :is="layout || 'div'">
     <RouterView />
   </component>
-
+  
 </template>
 
 <style scoped>

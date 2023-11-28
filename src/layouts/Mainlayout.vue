@@ -7,27 +7,31 @@
                 </router-link>
             </template>
             <template #item="{ item, props, root }">
-                <a v-if="item.target" v-ripple class="flex align-items-center p-menuitem-link" :href="item.path" target="_blank">
+                <a v-if="item.target" class="flex align-items-center p-menuitem-link" :href="item.path" target="_blank">
                         <span :class="item.icon"></span>
                         <span class="ml-2">{{ item.label }}</span>
-                        <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
+                        <badge-component v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
                 </a>
                 <router-link v-else class="no-underline" :to="`${item.path}`">
-                    <a v-ripple class="flex align-items-center" v-bind="props.action">
+                    <a class="flex align-items-center" v-bind="props.action">
                         <span :class="item.icon"></span>
                         <span class="ml-2">{{ item.label }}</span>
-                        <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
+                        <badge-component v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
                     </a>
                 </router-link>
             </template>
         </Menubar>
+        <slot></slot>
     </div>
 </template>
 <script>
 import { ref } from 'vue'
 import pokeball from '../assets/svg/pokeball.svg'
+import Menubar from 'primevue/menubar'
+
 
 export default {
+    name: "main-layout",
     data() {
         return {
             pokeball,
@@ -49,6 +53,9 @@ export default {
                 }
             ])
         }
+    },
+    components:{
+        Menubar,
     }
 }
 </script>

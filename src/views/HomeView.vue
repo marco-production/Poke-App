@@ -11,8 +11,8 @@
             <template #title><span style="text-transform: capitalize;">{{ pokemon.name }}</span></template>
             <template #subtitle><b>Pokemon number:</b> {{ pokemon.id }} </template>
             <template #footer>
-              <router-link class="no-underline" :to="`/${pokemon.id}`"><Button label="More details"
-                  severity="danger"></Button></router-link>
+              <router-link class="no-underline" :to="`/${pokemon.id}`"><button-component label="More details"
+                  severity="danger"></button-component></router-link>
             </template>
           </Card>
         </div>
@@ -24,7 +24,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import Card from 'primevue/card'
+import ButtonComponent from 'primevue/button'
+import Paginator from 'primevue/paginator'
+
 
 export default {
   name: "home-view",
@@ -36,7 +40,13 @@ export default {
       total: 0,
     }
   },
+  components:{
+    Card,
+    ButtonComponent,
+    Paginator
+  },
   created() {
+    console.log("created")
     this.getPokemons();
   },
   mounted() {
@@ -75,7 +85,6 @@ export default {
           console.log(err);
         });
 
-      return null;
     },
   }
 }

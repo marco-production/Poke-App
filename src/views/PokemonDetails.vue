@@ -1,10 +1,9 @@
 <template>
     <div>
-            <div class="grid justify-content-center mt-5 mb-5">
-                <div class="col-12 md:col-5 lg:col-5">
+        <div class="grid justify-content-center mt-5 mb-5">
+            <div class="col-12 md:col-5 lg:col-5">
                 <div class="fadeinleft animation-duration-1000">
-
-                    <Fieldset>
+                    <fieldset-component>
                         <template #legend>
                             <div class="flex align-items-center gap-2 px-2">
                                 <span class="font-bold text-xl">
@@ -18,22 +17,21 @@
                                 <img :src="pokemon.image" :alt="pokemon.name" width="250" height="250">
                             </div>
                             <div class="col-12 md:col-7 lg:col-7">
-                                <Badge severity="info" v-for="t in pokemon.types" :key="t.slot" :value="t.type.name"
-                                    class="capitalize mr-2"></Badge>
+                                <badge-component severity="info" v-for="t in pokemon.types" :key="t.slot" :value="t.type.name"
+                                    class="capitalize mr-2"></badge-component>
                                 <Divider />
-                                <Badge :value="`Weight: ${pokemon.weight}`" class="mr-2" severity="warning"></Badge>
-                                <Badge :value="`Height: ${pokemon.height}`" class="mr-2" severity="warning"></Badge>
+                                <badge-component :value="`Weight: ${pokemon.weight}`" class="mr-2" severity="warning"></badge-component>
+                                <badge-component :value="`Height: ${pokemon.height}`" class="mr-2" severity="warning"></badge-component>
                                 <br>
                                 <p class="m-0 mt-3">{{ pokemon.description }}</p>
                             </div>
                         </div>
-                    </Fieldset>
+                    </fieldset-component>
                 </div>
             </div>
-                <div class="col-12 md:col-5 lg:col-5">
-            <div class="fadeinright animation-duration-1000">
-
-                    <Fieldset class="fieldsetStyle">
+            <div class="col-12 md:col-5 lg:col-5">
+                <div class="fadeinright animation-duration-1000">
+                    <fieldset-component class="fieldsetStyle">
                         <template #legend>
                             <div class="flex align-items-center gap-2 px-2">
                                 <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
@@ -46,7 +44,7 @@
                                 :value="stat.base_stat">
                             </ProgressBar>
                         </span>
-                    </Fieldset>
+                    </fieldset-component>
                 </div>
             </div>
         </div>
@@ -54,9 +52,9 @@
 </template>
 <script>
 import axios from 'axios';
-import Badge from 'primevue/badge';
 import ProgressBar from 'primevue/progressbar';
 import Divider from 'primevue/divider';
+import FieldsetComponent from 'primevue/fieldset'
 
 export default {
     name: "pokemon-details",
@@ -74,9 +72,9 @@ export default {
         }
     },
     components: {
-        Badge,
         ProgressBar,
-        Divider
+        Divider,
+        FieldsetComponent
     },
     created() {
         this.getPokemon()
@@ -112,6 +110,7 @@ export default {
 .grid {
     margin: 0 !important;
 }
+
 .capitalize {
     text-transform: capitalize;
 }
