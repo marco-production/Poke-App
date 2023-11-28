@@ -1,4 +1,4 @@
-import MainLayout from "@/layouts/MainLayout.vue"
+import MainLayout from "@/layouts/Mainlayout.vue"
 
 export default {
     MainLayout
